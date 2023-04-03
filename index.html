@@ -3,11 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icons" href="icons/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Daniel's Portfolio</title>
   </head>
   <body>
-    <div id="app"></div>
+    <!--
+    <canvas id="bg"></canvas>
+    
     <script type="module" src="/main.js"></script>
+    -->
+    <nav>
+      <div id="greeting" class="nav-section">
+        <h1 href="" class="typewrite" data-period="2000" data-type='[ "Welcome" ]'></h1>
+      </div>
+      <div id="link" class="nav-section">
+        <a href="#">ABOUT</a>
+        <a href="#">WORK</a>
+      </div>
+      <div id="social" class="nav-section">
+        <a href="#">
+          <i class="linkedin"></i>
+        </a>
+        <a href="#">
+          <i class="github"></i>
+        </a>
+      </div>
+      <div id="email" class="nav-section">
+        <a href="#">EMAIL</a>
+      </div>
+    </nav>
+    <script type="module" src="/typeWriter.js"></script>
+    <main>
+      <article data-index="0" data-status="active">
+        <div class="art-graphic art-sec">
+
+        </div>
+        <div class="art-info art-sec">
+          <h1>About me</h1>
+        </div>
+        <div class="art-title art-sec">
+
+        </div>
+        <div class="art-nav art-sec">
+          <button class="art-nav-left">
+            <div class="arrow left" type="button" onclick="leftClick()">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+          
+          <button class="art-nav-right">
+            <div class="arrow right" type="button" onclick="leftClick()">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+          
+        </div>
+      </article>
+
+    </main>
   </body>
 </html>
