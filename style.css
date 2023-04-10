@@ -23,7 +23,7 @@ nav{
 }
 
 nav > .nav-section{
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     display: flex;
     gap: 1rem;
     border-left: 1px solid var(--border-color);
@@ -49,10 +49,8 @@ nav > .nav-section{
 
 h1, h2, h3, a, p, span{
     font-family: "Rubik", sans-serif;
-    font-weight: 400;
     color: black;
 }
-
 
 a{
     text-decoration: none;
@@ -60,14 +58,13 @@ a{
 
 main{
     flex-grow: 1;
-
 }
 
 main > article{
     display: grid;
     height: 100%;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 3fr 1fr;
 
 }
 
@@ -83,8 +80,12 @@ main > article > .art-nav, main > article > .art-title{
     border-top: 1px solid var(--border-color);
 }
 
-main > article[data-status="inactive"]{
-    transform: translateX(-100%);
+.info{
+    padding: 1rem 2rem;
+}
+
+.info > h1{
+    text-align: center;
 }
 
 .art-nav {
@@ -93,26 +94,27 @@ main > article[data-status="inactive"]{
     overflow: hidden;
 }
 
-.art-nav-left {
+.art-nav-but{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
     height: 100%;
-    float: left;
     border: none;
     background: none;
+    cursor: pointer;
+}
+
+.art-nav-but:active{
+    background-color: aqua;
+}
+
+.art-nav-left {
+    float: left;
 }
 
 .art-nav-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 100%;
-    border: none;
     border-left: 1px solid var(--border-color);
-    background: none;
 }
 
 /**********************************************************************/
@@ -160,4 +162,13 @@ main > article[data-status="inactive"]{
         opacity: 0;
         transform: rotate(45deg) translate(20px, 20px);
     }
+}
+
+/**********************************************************************/
+.info{
+    position: absolute;
+}
+
+.info[data-status="inactive"]{
+    display: none;
 }
