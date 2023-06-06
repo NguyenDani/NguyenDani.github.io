@@ -1,6 +1,6 @@
 :root{
-    --background-color: rgba(0, 172, 0, 0.342);
-    --border-color: black;
+    --background-color: #545E75;
+    --border-color: #63ADF2;
 }
 
 body{
@@ -23,12 +23,16 @@ nav{
 }
 
 nav > .nav-section{
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     display: flex;
     gap: 1rem;
     border-left: 1px solid var(--border-color);
     align-items: center;
     justify-content: center;
+}
+
+#greeting{
+    border-left: none;
 }
 
 #greeting, #link{
@@ -49,10 +53,8 @@ nav > .nav-section{
 
 h1, h2, h3, a, p, span{
     font-family: "Rubik", sans-serif;
-    font-weight: 400;
-    color: black;
+    color: #A7CCED;
 }
-
 
 a{
     text-decoration: none;
@@ -60,14 +62,13 @@ a{
 
 main{
     flex-grow: 1;
-
 }
 
 main > article{
     display: grid;
     height: 100%;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 3fr 1fr;
 
 }
 
@@ -79,40 +80,44 @@ main > article > .art-info, main > article > .art-nav{
     border-left: 1px solid var(--border-color);
 }
 
-main > article > .art-nav, main > article > .art-title{
+main > article > .art-nav, main > article > .art-credit{
     border-top: 1px solid var(--border-color);
 }
 
-main > article[data-status="inactive"]{
-    transform: translateX(-100%);
+.info{
+    padding: 1rem 2rem;
+}
+
+.info > h1{
+    text-align: center;
 }
 
 .art-nav {
     width: 100%;
-    border: 1px solid black;
     overflow: hidden;
 }
 
-.art-nav-left {
+.art-nav-but{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
     height: 100%;
-    float: left;
     border: none;
     background: none;
+    cursor: pointer;
+}
+
+.art-nav-but:active{
+    /* ADD A RESPONSIVE ACTIVE FEED BACK SO THE USER KNOWS THEY CLICKED IT*/
+}
+
+.art-nav-left {
+    float: left;
 }
 
 .art-nav-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 100%;
-    border: none;
     border-left: 1px solid var(--border-color);
-    background: none;
 }
 
 /**********************************************************************/
@@ -134,8 +139,8 @@ main > article[data-status="inactive"]{
     display: block;
     width: 1.5vw;
     height: 1.5vw;
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
+    border-bottom: 5px solid #82A0BC;
+    border-right: 5px solid #82A0BC;
     transform: rotate(45deg);
     animation: animate 2s infinite;
 }
@@ -161,3 +166,18 @@ main > article[data-status="inactive"]{
         transform: rotate(45deg) translate(20px, 20px);
     }
 }
+
+/**********************************************************************/
+.info{
+    position: absolute;
+}
+
+.info[data-status="inactive"]{
+    display: none;
+}
+
+
+/* ADD ANIMATION FOR INFO SEC
+
+INCREASE FONT SIZE OF NAV   
+*/
