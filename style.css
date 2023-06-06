@@ -1,6 +1,6 @@
 :root{
-    --background-color: rgba(0, 172, 0, 0.342);
-    --border-color: black;
+    --background-color: #545E75;
+    --border-color: #63ADF2;
 }
 
 body{
@@ -31,6 +31,10 @@ nav > .nav-section{
     justify-content: center;
 }
 
+#greeting{
+    border-left: none;
+}
+
 #greeting, #link{
     flex-basis: calc(100%/3);
 }
@@ -49,7 +53,7 @@ nav > .nav-section{
 
 h1, h2, h3, a, p, span{
     font-family: "Rubik", sans-serif;
-    color: black;
+    color: #A7CCED;
 }
 
 a{
@@ -76,7 +80,7 @@ main > article > .art-info, main > article > .art-nav{
     border-left: 1px solid var(--border-color);
 }
 
-main > article > .art-nav, main > article > .art-title{
+main > article > .art-nav, main > article > .art-credit{
     border-top: 1px solid var(--border-color);
 }
 
@@ -90,7 +94,6 @@ main > article > .art-nav, main > article > .art-title{
 
 .art-nav {
     width: 100%;
-    border: 1px solid black;
     overflow: hidden;
 }
 
@@ -106,7 +109,7 @@ main > article > .art-nav, main > article > .art-title{
 }
 
 .art-nav-but:active{
-    background-color: aqua;
+    /* ADD A RESPONSIVE ACTIVE FEED BACK SO THE USER KNOWS THEY CLICKED IT*/
 }
 
 .art-nav-left {
@@ -136,8 +139,8 @@ main > article > .art-nav, main > article > .art-title{
     display: block;
     width: 1.5vw;
     height: 1.5vw;
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
+    border-bottom: 5px solid #82A0BC;
+    border-right: 5px solid #82A0BC;
     transform: rotate(45deg);
     animation: animate 2s infinite;
 }
@@ -172,3 +175,9 @@ main > article > .art-nav, main > article > .art-title{
 .info[data-status="inactive"]{
     display: none;
 }
+
+
+/* ADD ANIMATION FOR INFO SEC
+
+INCREASE FONT SIZE OF NAV   
+*/
