@@ -84,6 +84,11 @@ main > article > .art-nav, main > article > .art-credit{
     border-top: 1px solid var(--border-color);
 }
 
+.experience-canvas{
+    width: 100%;
+    height: 100%;
+}
+
 .info{
     padding: 1rem 2rem;
 }
