@@ -74,6 +74,7 @@ main > article{
 
 main > article > .art-sec{
     height: 100%;
+    width: 100%;
 }
 
 main > article > .art-info, main > article > .art-nav{
@@ -95,6 +96,11 @@ main > article > .art-nav, main > article > .art-credit{
 
 .info > h1{
     text-align: center;
+}
+
+.credit{
+    text-align: left;
+    padding: 1rem 2rem;
 }
 
 .art-nav {
