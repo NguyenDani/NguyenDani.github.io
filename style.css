@@ -85,9 +85,21 @@ main > article > .art-nav, main > article > .art-credit{
     border-top: 1px solid var(--border-color);
 }
 
+#canvasContainer {
+    position: relative;
+    width: 100%;
+  }
+  
+  #myCanvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
 .experience-canvas{
     width: 100%;
     height: 100%;
+    margin: 0;
 }
 
 .info{

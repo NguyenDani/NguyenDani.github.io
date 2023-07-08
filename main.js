@@ -1,6 +1,8 @@
+/*
 import './style.css';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 const scene = new THREE.Scene();
 
@@ -11,6 +13,7 @@ const renderer = new THREE.WebGLRenderer({
 })
 
 renderer.setPixelRatio(window.devicePixelRatio);
+
 // Set size of renderer
 var canvas = document.getElementById('bg');
 const canvasW = canvas.getBoundingClientRect().width;
@@ -31,6 +34,8 @@ camera.rotateX(-25);
 
 renderer.render(scene, camera);
 
+
+/*
 const loader = new GLTFLoader();
 
 loader.load( '/models/Bedroom2.glb', function ( gltf ) {
@@ -61,10 +66,9 @@ function animate(){
 }
 
 animate()
+*/
 
-/*
 import "./style.css";
 import Experience from "./Experience/Experience.js";
 
 const experience = new Experience(document.querySelector(".experience-canvas"));
-*/
