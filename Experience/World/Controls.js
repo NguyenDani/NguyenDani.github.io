@@ -10,9 +10,11 @@ export default class Controls {
 
 
 
-        this.setPath();
+        //this.setPath();
     }
 
+    /*
+    This is to set the camera movement
     setPath() {
         this.curve = new THREE.CatmullRomCurve3( [
             new THREE.Vector3( -10, 0, 10 ),
@@ -32,6 +34,7 @@ export default class Controls {
         this.scene.add( curveObject );
 
     }
+    */
 
     resize() {}
 

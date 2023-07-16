@@ -10,8 +10,14 @@ export default class Room {
         this.room = this.resources.items.room;
         this.actualRoom = this.room.scene;
 
+        this.rotation = {
+            current: 0,
+            target: 0,
+            ease: 0.1,
+        };
 
         this.setModel();
+        this.onMouseMove();
     }
 
     setModel() {
@@ -34,13 +40,21 @@ export default class Room {
 
         });
 
+        this.actualRoom.rotation.y = 3;
         this.scene.add(this.actualRoom);
-        this.actualRoom.rotation.y = Math.PI/4;
     }
 
+    onMouseMove() {
+        window.addEventListener("mousemove", (e) => {
+            this.rotation.target = ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth * 0.05;
+            this.update();
+        });
+    }
+    
     resize() {}
-
+    
     update() {
-
+        this.rotation.current += (this.rotation.target - this.rotation.current) * this.rotation.ease;
+        this.actualRoom.rotation.y = this.rotation.current + 3;
     }
 }
