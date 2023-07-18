@@ -1,17 +1,32 @@
 import * as THREE from "three";
+import gsap from "gsap";
+
 import Experience from "./Experience.js";
+import Navigation from "../navigation.js";
+
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export default class Camera {
     constructor() {
         this.experience = new Experience();
+        this.navigation = new Navigation();
         this.sizes = this.experience.sizes;
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
 
+        this.btnREl = document.querySelector('.art-nav-right');
+        this.btnLEl = document.querySelector('.art-nav-left');
+
+        this.rightClick = this.cameraUpdate.bind(this);
+        this.leftClick = this.cameraUpdate.bind(this);
+
+        this.btnREl.addEventListener('click', this.rightClick);
+        this.btnLEl.addEventListener('click', this.leftClick);
+
         this.createPerspectiveCamera();
         this.createOrthographicCamera();
         this.setOrbitControls();
+        this.cameraUpdate();
     }
 
     createPerspectiveCamera() {
@@ -34,8 +49,7 @@ export default class Camera {
             -50,
             50
         );
-        this.orthographicCamera.position.y = 6.65;
-        this.orthographicCamera.position.z = 10;
+
         this.orthographicCamera.rotation.x = -Math.PI / 6;
 
         this.setOrthographicZoom(1.5);
@@ -44,14 +58,40 @@ export default class Camera {
     }
 
     setOrthographicZoom(zoomFactor) {
-        this.orthographicCamera.zoom = zoomFactor;
-        this.orthographicCamera.updateProjectionMatrix();
-      }
+        //this.orthographicCamera.zoom = zoomFactor;
+        //this.orthographicCamera.updateProjectionMatrix();
+        gsap.to(this.orthographicCamera, {
+            duration: 1.5,
+            zoom: zoomFactor,
+            onUpdate: () => {
+                this.orthographicCamera.updateProjectionMatrix();
+            }
+        });
+    }
 
     setOrbitControls() {
         this.controls = new OrbitControls(this.perspectiveCamera, this.canvas);
         this.controls.enableDamping = true;
         this.controls.enableZoom = false;
+    }
+
+    cameraUpdate(){
+        if(this.navigation.activeIndex == 1){
+            gsap.to(this.orthographicCamera.position, {
+                x: .4,
+                y: 1,
+                duration: 1.5,
+            });
+            this.setOrthographicZoom(4);
+        }
+        else{
+            gsap.to(this.orthographicCamera.position, {
+                x: 0,
+                y: 0.9,
+                duration: 1.5,
+            });
+            this.setOrthographicZoom(1.5);
+        }
     }
 
     resize() {
