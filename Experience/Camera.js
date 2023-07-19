@@ -2,7 +2,7 @@ import * as THREE from "three";
 import gsap from "gsap";
 
 import Experience from "./Experience.js";
-import Navigation from "../navigation.js";
+import Navigation from "../NavigationBar.js";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
