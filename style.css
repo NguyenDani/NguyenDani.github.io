@@ -58,6 +58,8 @@ h1, h2, h3, a, p, span{
 
 a{
     text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 main{
@@ -80,6 +82,8 @@ main > article > .art-sec{
 .art-info{
     overflow-y:auto;
     position:relative;
+    display: flex;
+    justify-content: center;
 }
 
 main > article > .art-info, main > article > .art-nav{
@@ -112,12 +116,27 @@ main > article > .art-nav, main > article > .art-credit{
 }
 
 .info > h1{
+    font-size: 1.75rem;
     text-align: center;
+}
+
+.info > p{
+    font-size: 1.1rem;
+    margin-top: .5rem;
+    margin-bottom: 2rem;
+}
+
+.info > h3{
+    font-size: 1.4rem;
+    margin: 0;
 }
 
 .credit{
     text-align: left;
     padding: 1rem 2rem;
+}
+.credit > p{
+    font-size: 1.2rem;
 }
 
 .art-nav {

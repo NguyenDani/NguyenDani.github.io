@@ -16,12 +16,15 @@ export default class Camera {
 
         this.btnREl = document.querySelector('.art-nav-right');
         this.btnLEl = document.querySelector('.art-nav-left');
+        this.aboutButton = document.querySelector('.aboutButton');
+        this.experienceButton = document.querySelector('.experienceButton');
 
-        this.rightClick = this.cameraUpdate.bind(this);
-        this.leftClick = this.cameraUpdate.bind(this);
+        this.buttonPress = this.cameraUpdate.bind(this);
 
-        this.btnREl.addEventListener('click', this.rightClick);
-        this.btnLEl.addEventListener('click', this.leftClick);
+        this.btnREl.addEventListener('click', this.buttonPress);
+        this.btnLEl.addEventListener('click', this.buttonPress);
+        this.aboutButton.addEventListener('click', this.buttonPress);
+        this.experienceButton.addEventListener('click', this.buttonPress);
 
         this.createPerspectiveCamera();
         this.createOrthographicCamera();
