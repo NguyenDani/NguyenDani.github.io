@@ -15,5 +15,9 @@
   },
   "dependencies": {
     "events": "^3.3.0"
-  }
+  },
+  "description": "Tech",
+  "main": "main.js",
+  "author": "",
+  "license": "ISC"
 }
