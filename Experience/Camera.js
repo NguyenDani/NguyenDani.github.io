@@ -89,6 +89,22 @@ export default class Camera {
             });
             this.setOrthographicZoom(4);
         }
+        else if(this.navigation.activeIndex == 2){
+            gsap.to(this.orthographicCamera.position, {
+                x: -1,
+                y: 1,
+                duration: 1.5,
+            });
+            this.setOrthographicZoom(4);
+        }
+        else if(this.navigation.activeIndex == 3){
+            gsap.to(this.orthographicCamera.position, {
+                x: -0.5,
+                y: -0.5,
+                duration: 1.5,
+            });
+            this.setOrthographicZoom(4);
+        }
         else{
             gsap.to(this.orthographicCamera.position, {
                 x: 0,
