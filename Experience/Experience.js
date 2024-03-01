@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from '../node_modules/three/build/three.module.js';
 
 import Sizes from './Utils/Sizes.js';
 import Time from './Utils/Time.js';
