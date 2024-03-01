@@ -4,6 +4,7 @@ export default class Navigation {
         this.btnLEl = document.querySelector('.art-nav-left');
         this.aboutButton = document.querySelector('.aboutButton');
         this.experienceButton = document.querySelector('.experienceButton');
+        this.projectsButton = document.querySelector('.projectsButton');
         this.contactButton = document.querySelector('.contactButton');
     
         this.activeIndex = 0;
@@ -14,12 +15,14 @@ export default class Navigation {
         this.leftClick = this.leftClick.bind(this);
         this.aboutClick = this.aboutClick.bind(this);
         this.experienceClick = this.experienceClick.bind(this);
+        this.projectsClick = this.projectsClick.bind(this);
         this.contactClick = this.contactClick.bind(this);
 
         this.btnREl.addEventListener('click', this.rightClick);
         this.btnLEl.addEventListener('click', this.leftClick);
         this.aboutButton.addEventListener('click', this.aboutClick);
         this.experienceButton.addEventListener('click', this.experienceClick);
+        this.projectsButton.addEventListener('click', this.projectsClick);
         this.contactButton.addEventListener('click', this.contactClick);
 
         this.activeStyle = document.getElementById("about");
@@ -84,11 +87,22 @@ export default class Navigation {
         }
     }
 
-    contactClick(){
+    projectsClick(){
         if(this.activeIndex != 2){
             this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
             this.current.dataset.status = 'inactive';
             this.activeIndex = 2;
+            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
+            this.current.dataset.status = 'active';
+            this.glowEffect();
+        }
+    }
+
+    contactClick(){
+        if(this.activeIndex != 3){
+            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
+            this.current.dataset.status = 'inactive';
+            this.activeIndex = 3;
             this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
             this.current.dataset.status = 'active';
             this.glowEffect();
@@ -107,6 +121,11 @@ export default class Navigation {
             this.activeStyle.style.color = 'white';
         }
         else if(this.activeIndex == 2){
+            this.activeStyle.style.color = this.ogColor;
+            this.activeStyle = document.getElementById("projects");
+            this.activeStyle.style.color = 'white';
+        }
+        else if(this.activeIndex == 3){
             this.activeStyle.style.color = this.ogColor;
             this.activeStyle = document.getElementById("contact");
             this.activeStyle.style.color = 'white';
