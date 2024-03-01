@@ -18,6 +18,7 @@ export default class Camera {
         this.btnLEl = document.querySelector('.art-nav-left');
         this.aboutButton = document.querySelector('.aboutButton');
         this.experienceButton = document.querySelector('.experienceButton');
+        this.projectsButton = document.querySelector('.projectsButton');
         this.contactButton = document.querySelector('.contactButton');
 
         this.buttonPress = this.cameraUpdate.bind(this);
@@ -26,6 +27,7 @@ export default class Camera {
         this.btnLEl.addEventListener('click', this.buttonPress);
         this.aboutButton.addEventListener('click', this.buttonPress);
         this.experienceButton.addEventListener('click', this.buttonPress);
+        this.projectsButton.addEventListener('click', this.buttonPress);
         this.contactButton.addEventListener('click', this.buttonPress);
 
         this.createPerspectiveCamera();
