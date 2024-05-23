@@ -1,6 +1,6 @@
 :root{
-    --background-color: #545E75;
-    --border-color: #63ADF2;
+    --background-color: #1B263B;
+    --border-color: #4A5568;
 }
 
 body{
@@ -14,6 +14,63 @@ body{
 
 *{
     box-sizing: border-box;
+}
+
+#loadingScreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    text-align: left;
+    padding: 20px;
+    color: green;
+    font-size: 1.2rem;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+}
+  
+#commandOutput {
+    white-space: pre-wrap; /* Preserve whitespace formatting */
+}
+
+#terminal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#terminal.hidden {
+    display: none;
+}
+
+.cmd .cmd-wrapper .cmd-prompt span span{
+    font-size: 1rem;
+}
+
+.cmd .cmd-wrapper .cmd-cursor-line span span{
+    font-size: 1rem;
+}
+
+/* Targeting the terminal output */
+.terminal .terminal-output {
+    font-size: 1rem; /* Adjust the font size as needed */
+    line-height: 1.4; /* Adjust the line height for better readability */
+}
+
+/* Targeting the terminal prompt */
+.terminal .terminal-output div div span {
+    font-size: 1rem; /* Adjust the font size as needed */
 }
 
 nav{
@@ -31,12 +88,21 @@ nav > .nav-section{
     justify-content: center;
 }
 
-#greeting{
+#switch{
     border-left: none;
+    padding: 0 8% 0 8%;
 }
 
-#greeting, #link{
-    flex-basis: calc(100%/3);
+#open-terminal{
+    border: none;
+    text-decoration: none;
+    background-color: inherit;
+    cursor: pointer;
+    font-size: 1.2rem;;
+}
+
+#open-terminal:hover{
+    color: #ff9966;
 }
 
 #social, #email{
@@ -45,15 +111,16 @@ nav > .nav-section{
 
 #link{
     gap: 6rem;
+    flex-basis: calc(100%/3);
 }
 
 #social{
     gap: 3rem;
 }
 
-h1, h2, h3, h4, a, p, span{
+h1, h2, h3, h4, a, p, span, button{
     font-family: "Rubik", sans-serif;
-    color: #A7CCED;
+    color: #F7FAFC;
 }
 
 a{
@@ -134,6 +201,7 @@ main > article > .art-nav, main > article > .art-credit{
 .credit{
     text-align: left;
     padding: 1rem 2rem;
+    height: 100%;
 }
 .credit > p{
     font-size: 1.2rem;
@@ -187,8 +255,8 @@ main > article > .art-nav, main > article > .art-credit{
     display: block;
     width: 1.5vw;
     height: 1.5vw;
-    border-bottom: 5px solid #82A0BC;
-    border-right: 5px solid #82A0BC;
+    border-bottom: 5px solid #F7FAFC;
+    border-right: 5px solid #F7FAFC;
     transform: rotate(45deg);
     animation: animate 2s infinite;
 }

@@ -5,36 +5,26 @@
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <link rel="stylesheet" href="./style.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/jquery.terminal/css/jquery.terminal.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer type="module" src="./typeWriter.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <script type="module" src="./transitionLoader.js"></script>
+    <script type="module" src="./terminal.js"></script>
     <script type="module" src="./main.js"></script>
     <script type="module" src="./NavigationBar.js"></script>
     <title>Daniel's Portfolio</title>
   </head>
   <body>
-    <nav>
-      <div id="greeting" class="nav-section">
-        <h1 href="" class="typewrite" data-period="2000" data-type='[
-        "Hello",
-        "Bonjour",
-        "Hola",
-        "Zdravstvuyte",
-        "Nǐn hǎo",
-        "Salve",
-        "Konnichiwa",
-        "Guten Tag",
-        "Olá",
-        "Anyoung haseyo",
-        "Asalaam alaikum",
-        "Goddag",
-        "Shikamoo",
-        "Goedendag",
-        "Yassas",
-        "Dzień dobry",
-        "Selamat siang",
-        "Merhaba",
-        "Shalom"
-        ]'></h1>
+    <div id="loadingScreen">
+      <div id="commandOutput"></div>
+    </div>
+    
+    <div id="terminal" class="hidden"></div>
+
+    <nav id="main-nav">
+      <div id="switch" class="nav-section">
+        <button id="open-terminal"><b>⚠&nbsp;&nbsp;WARNING!&nbsp;&nbsp;⚠</b></button>
       </div>
       <div id="link" class="nav-section">
         <a class="aboutButton" id="about" href="#">About</a>
@@ -42,7 +32,7 @@
         <a class="projectsButton" id="projects" href="#">Projects</a>
       </div>
       <div id="social" class="nav-section">
-        <a href="https://www.linkedin.com/in/daniel-nguyen-08327b18b/">
+        <a href="https://www.linkedin.com/in/nguyen-dani/">
           <i class="fa fa-linkedin-square" style="font-size: 200%;"></i>
         </a>
         <a href="https://github.com/NguyenDani">
@@ -53,7 +43,7 @@
         <a class="contactButton" id="contact" href="#">CONTACT</a>
       </div>
     </nav>
-    <main>
+    <main id="main-content">
       <article class="art-about">
         <div id="canvasContainer">
           <canvas class="experience-canvas art-sec" id="myCanvas"></canvas>
@@ -63,110 +53,107 @@
             <h1>About me</h1>
             <p>
               Welcome to my portfolio website! I'm Daniel Nguyen, a passionate 
-              and versatile individual with a strong background in computer 
-              science and intelligence analysis. With a Bachelor's degree in 
-              Computer Science and a Minor in Mathematics from the University 
-              of Houston, along with an Intelligence Analyst Diploma from the 
-              United States Army Intelligence Center of Excellence, I bring a 
-              unique blend of technical expertise and analytical skills to the 
-              table.
+              and versatile software engineer and cybersecurity practitioner 
+              with a strong background in computer science and intelligence 
+              analysis. I hold a Bachelor's degree in Computer Science with a 
+              Minor in Mathematics from the University of Houston, and an 
+              Intelligence Analyst Diploma from the United States Army Intelligence 
+              Center of Excellence. This unique blend of technical expertise and 
+              analytical skills enables me to approach problems from multiple perspectives.
             </p>
             <p>
-              I possess a wide range of programming skills, including 
-              proficiency in Java, C++, and PowerShell, as well as experience 
-              with Python, HTML, CSS, JavaScript, SQL, R, and various other 
-              languages. Furthermore, I hold a Top Secret Security Clearance, 
-              demonstrating my commitment to confidentiality and 
-              professionalism.
+              I am proficient in a wide range of programming languages, including C++, 
+              Java, Python, Bash, PowerShell, Batch, JavaScript, HTML, CSS, SQL, NoSQL, 
+              TypeScript, C, Assembly (x86/ARM), Ruby, and C#. Additionally, 
+              I have hands-on experience with various operating systems such as Windows, 
+              Linux, and Unix. My professional journey includes a Programmer Analyst 
+              Internship at CenterPoint Energy, where I automated critical security tasks, 
+              managed user permissions, and configured secure workstations. As an Intelligence 
+              Analyst with the Texas Army National Guard, I conducted comprehensive data 
+              analysis to identify security threats and provided actionable intelligence to 
+              senior leadership.
             </p>
             <p>
-              With my strong technical skills, analytical mindset, and 
-              dedication to excellence, I am excited to tackle new challenges 
-              and contribute to impactful projects. Feel free to explore my 
-              portfolio and get in touch if you have any questions or 
-              opportunities for collaboration.
+              With my strong technical skills, analytical mindset, and dedication to 
+              excellence, I am eager to take on new challenges and contribute to impactful 
+              projects. Feel free to explore my portfolio and get in touch if you have any 
+              questions or opportunities for collaboration.
             </p>
           </div>
           <div class="info" data-index="1" data-status="inactive">
             <h1>Experiences</h1>
             <div class="progressBars">
-              <div style="background-color: white;">
-                <div style="background-color: black; width: 75%;">
-                  <h4 style="margin-left: 10px;">C++</h4>
+              <div style="background-color: #F7FAFC;">
+                <div style="background-color: #4A5568; width: 80%;">
+                  <h4 style="margin-left: 10px;">C/C++</h4>
                 </div>
               </div>
-              <div style="background-color: white;">
-                <div style="background-color: black; width: 70%;">
+              <div style="background-color: #F7FAFC;;">
+                <div style="background-color: #4A5568; width: 80%;">
                   <h4 style="margin-left: 10px;">Java</h4>
                 </div>
               </div>
-              <div style="background-color: white;">
-                <div style="background-color: black; width: 75%;">
-                  <h4 style="margin-left: 10px;">PowerShell</h4>
+              <div style="background-color: #F7FAFC;;">
+                <div style="background-color: #4A5568; width: 60%;">
+                  <h4 style="margin-left: 10px;">Go</h4>
                 </div>
               </div>
-              <div style="background-color: white;">
-                <div style="background-color: black; width: 50%;">
+              <div style="background-color: #F7FAFC;;">
+                <div style="background-color: #4A5568; width: 50%;">
                   <h4 style="margin-left: 10px;">Python</h4>
                 </div>
               </div>
-              <div style="background-color: white;">
-                <div style="background-color: black; width: 70%;">
-                  <h4 style="margin-left: 10px;">HTML, CSS</h4>
+              <div style="background-color: #F7FAFC;;">
+                <div style="background-color: #4A5568; width: 70%;">
+                  <h4 style="margin-left: 10px;">HTML/CSS</h4>
                 </div>
               </div>
-              <div style="background-color: white;">
-                <div style="background-color: black; width: 60%;">
-                  <h4 style="margin-left: 10px;">JavaScript</h4>
+              <div style="background-color: #F7FAFC;;">
+                <div style="background-color: #4A5568; width: 60%;">
+                  <h4 style="margin-left: 10px;">JavaScript/Typescript</h4>
                 </div>
               </div>
-              <div style="background-color: white;">
-                <div style="background-color: black; width: 40%;">
+              <div style="background-color: #F7FAFC;;">
+                <div style="background-color: #4A5568; width: 40%;">
                   <h4 style="margin-left: 10px;">SQL</h4>
                 </div>
               </div>
             </div>
             <h2 style="margin-bottom: 0;">CenterPoint Energy</h2>
-            <h3 style="margin-top: 0;">Control Systems Developer</h3>
+            <h3 style="margin-top: 0;">Programmer Analyst Intern</h3>
             <p>
-              During my tenure as a Co-Op Control Systems Developer at 
-              CenterPoint Energy from February 2022 to August 2022, I 
-              achieved significant accomplishments that streamlined 
-              operations and enhanced productivity. Through the 
-              implementation of PowerShell automation, I successfully 
-              eliminated manual tasks, such as adding and deleting users 
-              from the domain, checking Windows updates on connected 
-              workstations, and generating reports, resulting in a 
-              saving of 10 labor hours per week. Additionally, I 
-              constructed and maintained more than 50 consoles, e
-              nsuring the smooth expansion and upgrade of the enterprise 
-              footprint while minimizing disruptions to operator workflow. 
-              Moreover, I devised an alias in Linux that facilitated seamless 
-              navigation across 54 domains, and I created a batch script 
-              enabling the instantaneous creation of over 70 tunnels to 
-              domains. Another notable achievement was my ability to 
-              optimize and debug codes created by senior engineers and 
-              system architects, mitigating data compatibility errors 
-              by seamlessly integrating large data sets between Linux 
-              and Windows systems.
+              During my internship at CenterPoint Energy, I developed PowerShell 
+              scripts to automate critical security tasks, significantly reducing 
+              manual effort by 10 hours per week. These automated tasks included user 
+              account management, system update checks, and security report generation. 
+              I managed user and group permissions through Active Directory and Group 
+              Policies, enhancing security by controlling user privileges, enforcing 
+              password expiration policies, and implementing automated scheduling for 
+              compliance. Additionally, I constructed and configured over 50 secure 
+              workstations, ensuring compliance with enterprise security policies without 
+              disrupting user workflow. This involved installing secure images, setting 
+              BIOS, configuring firewalls, assigning IP addresses, and joining domains. 
+              I also updated and maintained security instruction documents to ensure 
+              consistent and accurate guidance for secure system operations. This included 
+              documenting best practices for password management and weekly security reports. 
+              Moreover, I managed Windows Scheduler to ensure timely password updates and 
+              generate security reports on workstation status.
             </p>
             <h2 style="margin-bottom: 0;">Texas Army National Guard</h2>
             <h3 style="margin-top: 0;">Intelligence Analyst</h3>
             <p>
-              During my service in the Texas Army National Guard as an 
-              Intelligence Analyst, from April 2016 to April 2022, I 
-              held the rank of E4 Specialist (SPC) and undertook various 
-              responsibilities that showcased my leadership, organizational, 
-              and problem-solving skills. I excelled in developing and 
-              presenting detailed mission plans to commanders and company 
-              personnel during monthly drills and annual training. In addition, 
-              I managed, inspected, and maintained equipment valued at over 
-              $2 million, ensuring its proper working condition for mission 
-              readiness. As a trainer, I successfully imparted vital warrior 
-              skills and intelligence oversight knowledge to 50 to 100 
-              soldiers, covering areas such as wound and injury care treatment, 
-              military vehicle operation, terrain analysis, and intelligence 
-              gathering.
+              As an Intelligence Analyst with the Texas Army National Guard, I conducted 
+              comprehensive analyses of intelligence data—including signals, human, 
+              open-source, and geospatial—to identify emerging patterns, trends, and 
+              security threats. This analysis provided actionable intelligence to senior 
+              leadership. I developed and maintained intelligence databases to ensure the 
+              accuracy and confidentiality of sensitive information. Additionally, I 
+              prepared detailed reports and presentations, utilizing data visualization 
+              tools to communicate key findings to both technical and non-technical audiences. 
+              Collaboration was key in my role, as I worked with cross-functional teams, 
+              including operational units, counterintelligence, and other intelligence 
+              agencies, to provide real-time intelligence and risk assessments to senior 
+              leadership and field personnel.
             </p>
           </div>
           <div class="info" data-index="2" data-status="inactive">
@@ -202,6 +189,37 @@
               contribute to shared lists. <a href="https://github.com/NguyenDani/Task-Management-MEAN" 
               style="color:#47a9ff;">Github</a>
             </p>
+            <h3>Client-Server</h3>
+            <p>
+              This project involves the development of a multi-threaded echo server 
+              and a corresponding client application in C++. The server listens for 
+              incoming client connections on a specified port, and for each connected 
+              client, it spawns a new thread to handle communication. The server echoes 
+              back any data it receives from the clients, demonstrating the use of socket 
+              programming, multi-threading, and inter-process communication. Key skills 
+              showcased in this project include network programming with TCP/IP, utilizing 
+              system calls, and multi-threading to manage concurrent client connections
+              efficiently. Error handling and data transmission management are also integral
+              parts of the implementation, hightlighting a strong understanding of both
+              low-level system programming and high-level application design. <a href="https://github.com/NguyenDani/ClientServer" 
+              style="color:#47a9ff;">Github</a>
+            </p>
+            <h3>Market-Analysis</h3>
+            <p>
+              The Market Data Analysis Tool is a sophisticated application designed to 
+              analyze historical market data and identify patterns, trends, and correlations 
+              within financial data. By integrating both C++ and Python, this tool leverages 
+              the computational efficiency of C++ for real-time data processing and the 
+              flexibility of Python for data visualization. The application fetches real-time 
+              market data from Yahoo Finance, performs various statistical analyses such as 
+              moving averages, Bollinger Bands, and MACD, and presents the results through 
+              interactive plots. Utilizing multithreading for concurrent data processing, 
+              this tool ensures efficient handling of large datasets, making it an invaluable 
+              resource for traders, financial analysts, and researchers looking to gain 
+              actionable insights from market trends.
+              <a href="https://github.com/NguyenDani/Market-Analysis" 
+              style="color:#47a9ff;">Github</a>
+            </p>
           </div>
           <div class="info" data-index="3" data-status="inactive">
             <h1>Contact</h1>
@@ -212,28 +230,21 @@
             <h3>Email</h3>
             <a href="mailto:nguyendaniel1997@gmail.com">nguyendaniel1997@gmail.com</a>
             <h3>Github</h3>
-            <a href="https://github.com/NguyenDani">https://github.com/NguyenDani</a>
+            <a href="https://github.com/NguyenDani">github.com/NguyenDani</a>
             <h3>LinkedIn</h3>
-            <a href="https://www.linkedin.com/in/daniel-nguyen-08327b18b/">https://www.linkedin.com/in/daniel-nguyen-08327b18b/</a>
+            <a href="https://www.linkedin.com/in/nguyen-dani/">linkedin.com/in/nguyen-dani/</a>
           </div>
         </div>
         <div class="art-credit art-sec">
           <div class="credit">
-            <h3>Quote:</h3>
             <p>
-              <!--The creation of this website involved utilizing three js to 
-              construct the scene and all its elements. Blender played a 
-              crucial role in crafting the model, while node js contributed 
-              to the overall development process.-->
-              “Empty your mind. Be formless. Shapeless. Like water. 
-              You put water into a cup, it becomes the cup. You put water 
-              into a bottle, it becomes the bottle. You put it in a teapot, 
-              it becomes the teapot. Water can flow, or it can crash. Be water, 
-              my friend.”
-            </p>
-            <p>
-              <!--Created by Daniel Nguyen-->
-              -Bruce Lee
+              Welcome to my portfolio! Here, you'll find a showcase of my work, 
+              passion, and dedication. Whether it's through innovative design, 
+              creative projects, or meticulous attention to detail, each piece 
+              reflects my commitment to excellence. I invite you to explore my 
+              accomplishments, learn about my journey, and see firsthand how I 
+              bring ideas to life. Thank you for visiting, and I hope you enjoy 
+              discovering the diverse array of talents and skills I have to offer.
             </p>
           </div>
         </div>

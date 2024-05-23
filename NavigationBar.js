@@ -26,7 +26,8 @@ export default class Navigation {
         this.contactButton.addEventListener('click', this.contactClick);
 
         this.activeStyle = document.getElementById("about");
-        this.ogColor = '#A7CCED';
+        this.ogColor = '#F7FAFC';
+        this.activeColor = '#A3CEF1';
 
         this.getInfo();
         this.glowEffect();
@@ -113,22 +114,22 @@ export default class Navigation {
         if(this.activeIndex == 0){
             this.activeStyle.style.color = this.ogColor;
             this.activeStyle = document.getElementById("about");
-            this.activeStyle.style.color = 'white';
+            this.activeStyle.style.color = this.activeColor;
         }
         else if(this.activeIndex == 1){
             this.activeStyle.style.color = this.ogColor;
             this.activeStyle = document.getElementById("experience");
-            this.activeStyle.style.color = 'white';
+            this.activeStyle.style.color = this.activeColor;
         }
         else if(this.activeIndex == 2){
             this.activeStyle.style.color = this.ogColor;
             this.activeStyle = document.getElementById("projects");
-            this.activeStyle.style.color = 'white';
+            this.activeStyle.style.color = this.activeColor;
         }
         else if(this.activeIndex == 3){
             this.activeStyle.style.color = this.ogColor;
             this.activeStyle = document.getElementById("contact");
-            this.activeStyle.style.color = 'white';
+            this.activeStyle.style.color = this.activeColor;
         }
 
     }
