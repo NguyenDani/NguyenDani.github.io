@@ -14,9 +14,9 @@ $(document).ready(function() {
     ╚██████╗   ██║   ██████╔╝███████╗██║  ██║███████║███████╗╚██████╗╚██████╔╝██║  ██║██║   ██║      ██║   
      ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝   ╚═╝      ╚═╝   
                                                                                                            
-    `
+    `;
 
-    const aboutMe = `
+    const about = `
     Welcome to my portfolio website! I'm Daniel Nguyen, a passionate and versatile software 
     engineer and cybersecurity practitioner with a strong background in computer science and 
     intelligence analysis. I hold a Bachelor's degree in Computer Science with a Minor in 
@@ -36,11 +36,11 @@ $(document).ready(function() {
     With my strong technical skills, analytical mindset, and dedication to excellence, I am 
     eager to take on new challenges and contribute to impactful projects. Feel free to explore 
     my portfolio and get in touch if you have any questions or opportunities for collaboration.
-    `
+    `;
 
     const projects = `
-    Currently there are no project specificly in Cybersecurity.
-    `
+    Currently there are no project specifically in Cybersecurity.
+    `;
 
     const contact = `
     Please feel free to reach out to me using the email provided or through any of the alternative methods provided.
@@ -53,25 +53,24 @@ $(document).ready(function() {
     
     LinkedIn:
     https://linkedin.com/in/nguyen-dani/
-    `
+    `;
+
     $('#open-terminal').click(function() {
-        $('#main-content').hide();
-        $('#main-nav').hide();
-        $('#terminal').show();
+        $('#main-content').toggle();
+        $('#main-nav').toggle();
+        $('#terminal').toggle();
 
         $('#terminal').terminal(function(command, term) {
             if (command.toLowerCase() === 'help') {
                 term.echo('Available commands: help, about, projects, contact, quit');
             } else if (command.toLowerCase() === 'about') {
-                term.echo(aboutMe);
+                term.echo(about);
             } else if (command.toLowerCase() === 'projects') {
                 term.echo(projects);
             } else if (command.toLowerCase() === 'contact') {
                 term.echo(contact);
             } else if (command.toLowerCase() === 'quit') {
-                $('#terminal').hide();
-                $('#main-content').show();
-                $('#main-nav').show();
+                window.location.reload();
             } else {
                 term.echo('Unknown command: ' + command);
             }

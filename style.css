@@ -34,7 +34,7 @@ body{
 }
   
 #commandOutput {
-    white-space: pre-wrap; /* Preserve whitespace formatting */
+    white-space: pre-wrap;
 }
 
 #terminal {

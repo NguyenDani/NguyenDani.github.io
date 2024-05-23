@@ -6,11 +6,11 @@ export default class Navigation {
         this.experienceButton = document.querySelector('.experienceButton');
         this.projectsButton = document.querySelector('.projectsButton');
         this.contactButton = document.querySelector('.contactButton');
-    
+
         this.activeIndex = 0;
-    
+
         this.groups = document.getElementsByClassName('info');
-    
+
         this.rightClick = this.rightClick.bind(this);
         this.leftClick = this.leftClick.bind(this);
         this.aboutClick = this.aboutClick.bind(this);
@@ -34,181 +34,64 @@ export default class Navigation {
     }
 
     rightClick() {
-        this.nextIndex =
-            this.activeIndex + 1 <= this.groups.length - 1 ? this.activeIndex + 1 : 0;
-            
-            this.getInfo();
-    
-        //console.log(this.current);
-
-        this.current.dataset.status = 'inactive';
-        this.next.dataset.status = 'active';
-    
-        this.activeIndex = this.nextIndex;
-        this.glowEffect();
+        this.nextIndex = (this.activeIndex + 1) % this.groups.length;
+        this.updateStatus();
     }
-  
+
     leftClick() {
-        this.nextIndex =
-            this.activeIndex - 1 >= 0 ? this.activeIndex - 1 : this.groups.length - 1;
-            
+        this.nextIndex = (this.activeIndex - 1 + this.groups.length) % this.groups.length;
+        this.updateStatus();
+    }
+
+    updateStatus() {
         this.getInfo();
-    
-        this.current.dataset.status = 'inactive';
-        this.next.dataset.status = 'active';
-    
+
+        if (this.current) {
+            this.current.dataset.status = 'inactive';
+        }
+        if (this.next) {
+            this.next.dataset.status = 'active';
+        }
+
         this.activeIndex = this.nextIndex;
         this.glowEffect();
     }
 
-    getInfo(){
+    getInfo() {
         this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
         this.next = document.querySelector(`[data-index="${this.nextIndex}"]`);
     }
 
-    aboutClick(){
-        if(this.activeIndex != 0){
-            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
-            this.current.dataset.status = 'inactive';
-            this.activeIndex = 0;
-            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
-            this.current.dataset.status = 'active';
-            this.glowEffect();
+    aboutClick() {
+        this.changeIndex(0);
+    }
+
+    experienceClick() {
+        this.changeIndex(1);
+    }
+
+    projectsClick() {
+        this.changeIndex(2);
+    }
+
+    contactClick() {
+        this.changeIndex(3);
+    }
+
+    changeIndex(newIndex) {
+        if (this.activeIndex !== newIndex) {
+            this.nextIndex = newIndex;
+            this.updateStatus();
         }
     }
 
-    experienceClick(){
-        if(this.activeIndex != 1){
-            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
-            this.current.dataset.status = 'inactive';
-            this.activeIndex = 1;
-            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
-            this.current.dataset.status = 'active';
-            this.glowEffect();
-        }
-    }
-
-    projectsClick(){
-        if(this.activeIndex != 2){
-            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
-            this.current.dataset.status = 'inactive';
-            this.activeIndex = 2;
-            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
-            this.current.dataset.status = 'active';
-            this.glowEffect();
-        }
-    }
-
-    contactClick(){
-        if(this.activeIndex != 3){
-            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
-            this.current.dataset.status = 'inactive';
-            this.activeIndex = 3;
-            this.current = document.querySelector(`[data-index="${this.activeIndex}"]`);
-            this.current.dataset.status = 'active';
-            this.glowEffect();
-        }
-    }
-
-    glowEffect(){
-        if(this.activeIndex == 0){
-            this.activeStyle.style.color = this.ogColor;
-            this.activeStyle = document.getElementById("about");
-            this.activeStyle.style.color = this.activeColor;
-        }
-        else if(this.activeIndex == 1){
-            this.activeStyle.style.color = this.ogColor;
-            this.activeStyle = document.getElementById("experience");
-            this.activeStyle.style.color = this.activeColor;
-        }
-        else if(this.activeIndex == 2){
-            this.activeStyle.style.color = this.ogColor;
-            this.activeStyle = document.getElementById("projects");
-            this.activeStyle.style.color = this.activeColor;
-        }
-        else if(this.activeIndex == 3){
-            this.activeStyle.style.color = this.ogColor;
-            this.activeStyle = document.getElementById("contact");
-            this.activeStyle.style.color = this.activeColor;
-        }
-
-    }
-
-
-}
-
-/*
-export default class Navigation {
-    constructor() {
-        const btnREl = document.querySelector('.art-nav-right');
-        const btnLEl = document.querySelector('.art-nav-left');
-        
-        let activeIndex = 0;
-        
-        const groups = document.getElementsByClassName("info");
-        
-        const rightClick = () => {
-            const nextIndex = (activeIndex + 1) <= (groups.length - 1) ? (activeIndex + 1) : 0;
-        
-            const current = document.querySelector(`[data-index="${activeIndex}"]`);
-            const next = document.querySelector(`[data-index="${nextIndex}"]`);
-        
-            current.dataset.status = "inactive";
-            next.dataset.status = "active";
-        
-            activeIndex = nextIndex;
-        }
-        
-        function leftClick(){
-            const nextIndex = (activeIndex - 1) >= 0 ? (activeIndex - 1) : (groups.length - 1);
-        
-            const current = document.querySelector(`[data-index="${activeIndex}"]`);
-            const next = document.querySelector(`[data-index="${nextIndex}"]`);
-        
-            current.dataset.status = "inactive";
-            next.dataset.status = "active";
-        
-            activeIndex = nextIndex;
-        }
-        
-        btnREl.addEventListener('click', rightClick);
-        btnLEl.addEventListener('click', leftClick);
+    glowEffect() {
+        const sections = ["about", "experience", "projects", "contact"];
+        sections.forEach((section, index) => {
+            const element = document.getElementById(section);
+            if (element) {
+                element.style.color = this.activeIndex === index ? this.activeColor : this.ogColor;
+            }
+        });
     }
 }
-*/
-
-/*
-const btnREl = document.querySelector('.art-nav-right');
-const btnLEl = document.querySelector('.art-nav-left');
-
-let activeIndex = 0;
-
-const groups = document.getElementsByClassName("info");
-
-const rightClick = () => {
-    const nextIndex = (activeIndex + 1) <= (groups.length - 1) ? (activeIndex + 1) : 0;
-
-    const current = document.querySelector(`[data-index="${activeIndex}"]`);
-    const next = document.querySelector(`[data-index="${nextIndex}"]`);
-
-    current.dataset.status = "inactive";
-    next.dataset.status = "active";
-
-    activeIndex = nextIndex;
-}
-
-function leftClick(){
-    const nextIndex = (activeIndex - 1) >= 0 ? (activeIndex - 1) : (groups.length - 1);
-
-    const current = document.querySelector(`[data-index="${activeIndex}"]`);
-    const next = document.querySelector(`[data-index="${nextIndex}"]`);
-
-    current.dataset.status = "inactive";
-    next.dataset.status = "active";
-
-    activeIndex = nextIndex;
-}
-
-btnREl.addEventListener('click', rightClick);
-btnLEl.addEventListener('click', leftClick);
-*/
