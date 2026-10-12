@@ -1,271 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
-    <link rel="stylesheet" href="./style.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.1/css/jquery.terminal.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.29.1/js/jquery.terminal.min.js"></script>
-    <script type="module" src="./transitionLoader.js"></script>
-    <script type="module" src="./terminal.js"></script>
-    <script type="module" src="./main.js"></script>
-    <script type="module" src="./NavigationBar.js"></script>
-    <title>Daniel's Portfolio</title>
-  </head>
-  <body>
-    <div id="loadingScreen">
-      <div id="commandOutput"></div>
-    </div>
-    
-    <div id="terminal" class="hidden"></div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <!-- EDIT: page title and description (shown in search results and link previews) -->
+  <title>Daniel Nguyen — Security Portfolio</title>
+  <meta name="description" content="Daniel Nguyen is an application security engineer. Projects, certifications, experience, and contact details.">
+  <meta property="og:title" content="Daniel Nguyen — Security Portfolio">
+  <meta property="og:description" content="Application security engineer. Projects, certifications, experience, and contact details.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <!-- Applies the saved theme (dark unless the visitor chose light) before first paint to avoid a flash -->
+  <script>
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    document.documentElement.dataset.theme = t || 'dark';
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="scene" aria-hidden="true"></canvas>
 
-    <nav id="main-nav">
-      <div id="switch" class="nav-section">
-        <button id="open-terminal"><b>⚠&nbsp;&nbsp;WARNING!&nbsp;&nbsp;⚠</b></button>
-      </div>
-      <div id="link" class="nav-section">
-        <a class="aboutButton" id="about" href="#">About</a>
-        <a class="experienceButton" id="experience" href="#">Experiences</a>
-        <a class="projectsButton" id="projects" href="#">Projects</a>
-      </div>
-      <div id="social" class="nav-section">
-        <a href="https://www.linkedin.com/in/nguyen-dani/">
-          <i class="fa fa-linkedin-square" style="font-size: 200%;"></i>
-        </a>
-        <a href="https://github.com/NguyenDani">
-          <i class="fa fa-github" style="font-size: 200%;"></i>
-        </a>
-      </div>
-      <div id="email" class="nav-section">
-        <a class="contactButton" id="contact" href="#">CONTACT</a>
-      </div>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="Primary">
+      <!-- EDIT: your initials or handle (keep the span; it is hidden on small screens) -->
+      <a class="brand" href="#top" aria-label="Home">dn<span class="brand-host">@sec:~$</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certs">Certs</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Switch color theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18V3z"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
     </nav>
-    <main id="main-content">
-      <article class="art-about">
-        <div id="canvasContainer">
-          <canvas class="experience-canvas art-sec" id="myCanvas"></canvas>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <!-- EDIT: hero -->
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status" aria-hidden="true"></span>Application Security Engineer · eCPPT · Security+</p>
+        <h1>Daniel Nguyen<br><span class="muted">I find the vulnerabilities, then automate the fix.</span></h1>
+        <p class="lede">Application security engineer with a background in vulnerability management, STIG and CIS compliance automation, and penetration testing. Former Army National Guard intelligence analyst.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View projects</a>
+          <a class="btn" href="Daniel_Nguyen_Resume_2026_10.pdf">Résumé</a>
+          <a class="btn" href="#contact">Get in touch</a>
         </div>
-        <div class="art-info art-sec">
-          <div class="info" data-index="0" data-status="active">
-            <h1>About me</h1>
-            <p>
-              Welcome to my portfolio website! I'm Daniel Nguyen, a passionate 
-              and versatile software engineer and cybersecurity practitioner 
-              with a strong background in computer science and intelligence 
-              analysis. I hold a Bachelor's degree in Computer Science with a 
-              Minor in Mathematics from the University of Houston, and an 
-              Intelligence Analyst Diploma from the United States Army Intelligence 
-              Center of Excellence. This unique blend of technical expertise and 
-              analytical skills enables me to approach problems from multiple perspectives.
-            </p>
-            <p>
-              I am proficient in a wide range of programming languages, including C++, 
-              Java, Python, Bash, PowerShell, Batch, JavaScript, HTML, CSS, SQL, NoSQL, 
-              TypeScript, C, Assembly (x86/ARM), Ruby, and C#. Additionally, 
-              I have hands-on experience with various operating systems such as Windows, 
-              Linux, and Unix. My professional journey includes a Programmer Analyst 
-              Internship at CenterPoint Energy, where I automated critical security tasks, 
-              managed user permissions, and configured secure workstations. As an Intelligence 
-              Analyst with the Texas Army National Guard, I conducted comprehensive data 
-              analysis to identify security threats and provided actionable intelligence to 
-              senior leadership.
-            </p>
-            <p>
-              With my strong technical skills, analytical mindset, and dedication to 
-              excellence, I am eager to take on new challenges and contribute to impactful 
-              projects. Feel free to explore my portfolio and get in touch if you have any 
-              questions or opportunities for collaboration.
-            </p>
+        <!-- Filled in live by scene.js -->
+        <p class="hud" aria-hidden="true">
+          <span>Simulated scan <span data-hud="progress">0%</span></span>
+          <span>Open findings <span class="open" data-hud="found">0</span></span>
+          <span>Remediated <span data-hud="fixed">0</span></span>
+        </p>
+      </div>
+    </section>
+
+    <section class="wrap section" id="about">
+      <h2>About</h2>
+      <div class="about">
+        <!-- EDIT: about -->
+        <div class="prose">
+          <p>I started in security as an intelligence analyst in the Texas Army National Guard, turning multi-source intelligence into threat assessments for leadership. That habit of asking what is actually a risk, and to whom, carried over when I moved into engineering with a computer science degree from the University of Houston.</p>
+          <p>Since then I've deployed and automated vulnerability scanning with Tenable Security Center and Nessus, hardened systems and Kubernetes clusters against DISA STIG and CIS baselines, and written policy as code so the next cluster starts out compliant. I prefer automating a control once over checking it by hand every week.</p>
+          <p>I now work in application security, embedding static and dynamic testing, secure code review, and penetration testing into the software development lifecycle. Outside of work I hold the eCPPT and eJPT, am working toward the OSCP, and spend time on HackTheBox, TryHackMe, and my own labs.</p>
+        </div>
+        <!-- EDIT: skills -->
+        <div class="skills">
+          <div>
+            <h3>Offensive</h3>
+            <ul class="tags">
+              <li>Penetration Testing</li>
+              <li>Web Security</li>
+              <li>Reverse Engineering</li>
+              <li>Burp Suite</li>
+              <li>Metasploit</li>
+              <li>Nmap</li>
+              <li>Nikto</li>
+              <li>Ghidra</li>
+              <li>IDA</li>
+              <li>Wireshark</li>
+            </ul>
           </div>
-          <div class="info" data-index="1" data-status="inactive">
-            <h1>Experiences</h1>
-            <div class="progressBars">
-              <div style="background-color: #F7FAFC;">
-                <div style="background-color: #4A5568; width: 80%;">
-                  <h4 style="margin-left: 10px;">C/C++</h4>
-                </div>
-              </div>
-              <div style="background-color: #F7FAFC;;">
-                <div style="background-color: #4A5568; width: 80%;">
-                  <h4 style="margin-left: 10px;">Java</h4>
-                </div>
-              </div>
-              <div style="background-color: #F7FAFC;;">
-                <div style="background-color: #4A5568; width: 60%;">
-                  <h4 style="margin-left: 10px;">Go</h4>
-                </div>
-              </div>
-              <div style="background-color: #F7FAFC;;">
-                <div style="background-color: #4A5568; width: 50%;">
-                  <h4 style="margin-left: 10px;">Python</h4>
-                </div>
-              </div>
-              <div style="background-color: #F7FAFC;;">
-                <div style="background-color: #4A5568; width: 70%;">
-                  <h4 style="margin-left: 10px;">HTML/CSS</h4>
-                </div>
-              </div>
-              <div style="background-color: #F7FAFC;;">
-                <div style="background-color: #4A5568; width: 60%;">
-                  <h4 style="margin-left: 10px;">JavaScript/Typescript</h4>
-                </div>
-              </div>
-              <div style="background-color: #F7FAFC;;">
-                <div style="background-color: #4A5568; width: 40%;">
-                  <h4 style="margin-left: 10px;">SQL</h4>
-                </div>
-              </div>
-            </div>
-            <h2 style="margin-bottom: 0;">CenterPoint Energy</h2>
-            <h3 style="margin-top: 0;">Programmer Analyst Intern</h3>
-            <p>
-              During my internship at CenterPoint Energy, I developed PowerShell 
-              scripts to automate critical security tasks, significantly reducing 
-              manual effort by 10 hours per week. These automated tasks included user 
-              account management, system update checks, and security report generation. 
-              I managed user and group permissions through Active Directory and Group 
-              Policies, enhancing security by controlling user privileges, enforcing 
-              password expiration policies, and implementing automated scheduling for 
-              compliance. Additionally, I constructed and configured over 50 secure 
-              workstations, ensuring compliance with enterprise security policies without 
-              disrupting user workflow. This involved installing secure images, setting 
-              BIOS, configuring firewalls, assigning IP addresses, and joining domains. 
-              I also updated and maintained security instruction documents to ensure 
-              consistent and accurate guidance for secure system operations. This included 
-              documenting best practices for password management and weekly security reports. 
-              Moreover, I managed Windows Scheduler to ensure timely password updates and 
-              generate security reports on workstation status.
-            </p>
-            <h2 style="margin-bottom: 0;">Texas Army National Guard</h2>
-            <h3 style="margin-top: 0;">Intelligence Analyst</h3>
-            <p>
-              As an Intelligence Analyst with the Texas Army National Guard, I conducted 
-              comprehensive analyses of intelligence data—including signals, human, 
-              open-source, and geospatial—to identify emerging patterns, trends, and 
-              security threats. This analysis provided actionable intelligence to senior 
-              leadership. I developed and maintained intelligence databases to ensure the 
-              accuracy and confidentiality of sensitive information. Additionally, I 
-              prepared detailed reports and presentations, utilizing data visualization 
-              tools to communicate key findings to both technical and non-technical audiences. 
-              Collaboration was key in my role, as I worked with cross-functional teams, 
-              including operational units, counterintelligence, and other intelligence 
-              agencies, to provide real-time intelligence and risk assessments to senior 
-              leadership and field personnel.
-            </p>
+          <div>
+            <h3>Vulnerability &amp; Compliance</h3>
+            <ul class="tags">
+              <li>Vulnerability Assessment</li>
+              <li>DISA STIG</li>
+              <li>CIS Benchmarks</li>
+              <li>Tenable Security Center (ACAS)</li>
+              <li>Nessus</li>
+              <li>JFrog Xray</li>
+              <li>Evaluate-STIG</li>
+              <li>SCC</li>
+              <li>ZAP</li>
+              <li>SBOM</li>
+            </ul>
           </div>
-          <div class="info" data-index="2" data-status="inactive">
-            <h1>Projects</h1>
-            <p>
-              All projects can be viewed on my <a href="https://github.com/NguyenDani" 
-              style="color:#47a9ff;">Github</a>.
-            </p>
-            <h3>Chess with Java</h3>
-            <p>
-              My project is an interactive Player vs Player (PvP) chess application 
-              developed using Java, Maven, and Swing. The primary aim was to create 
-              a user-friendly platform for chess enthusiasts to engage in matches 
-              against each other seamlessly. <a href="https://github.com/NguyenDani/Chess-Java" 
-              style="color:#47a9ff;">Github</a>
-            </p>
-            <h3>Messaging web app on MERN</h3>
-            <p>
-              I developed a messaging web application that provides users with the 
-              ability to log in, search for other users, and engage in real-time 
-              chat conversations. Leveraging the MERN (MongoDB, Express.js, 
-              React.js, Node.js) stack, the application offers a seamless 
-              and responsive user experience. <a href="https://github.com/NguyenDani/Messaging-MERN" 
-              style="color:#47a9ff;">Github</a>
-            </p>
-            <h3>Task Management MEAN</h3>
-            <p>
-              The Task Management App is a web-based platform designed to streamline 
-              task organization and collaboration. Built on the MEAN (MongoDB, 
-              Express.js, AngularJS, Node.js) tech stack, it offers users a 
-              seamless experience in managing their to-do lists and facilitates 
-              collaboration by allowing users to invite others to join and 
-              contribute to shared lists. <a href="https://github.com/NguyenDani/Task-Management-MEAN" 
-              style="color:#47a9ff;">Github</a>
-            </p>
-            <h3>Client-Server</h3>
-            <p>
-              This project involves the development of a multi-threaded echo server 
-              and a corresponding client application in C++. The server listens for 
-              incoming client connections on a specified port, and for each connected 
-              client, it spawns a new thread to handle communication. The server echoes 
-              back any data it receives from the clients, demonstrating the use of socket 
-              programming, multi-threading, and inter-process communication. Key skills 
-              showcased in this project include network programming with TCP/IP, utilizing 
-              system calls, and multi-threading to manage concurrent client connections
-              efficiently. Error handling and data transmission management are also integral
-              parts of the implementation, hightlighting a strong understanding of both
-              low-level system programming and high-level application design. <a href="https://github.com/NguyenDani/ClientServer" 
-              style="color:#47a9ff;">Github</a>
-            </p>
-            <h3>Market-Analysis</h3>
-            <p>
-              The Market Data Analysis Tool is a sophisticated application designed to 
-              analyze historical market data and identify patterns, trends, and correlations 
-              within financial data. By integrating both C++ and Python, this tool leverages 
-              the computational efficiency of C++ for real-time data processing and the 
-              flexibility of Python for data visualization. The application fetches real-time 
-              market data from Yahoo Finance, performs various statistical analyses such as 
-              moving averages, Bollinger Bands, and MACD, and presents the results through 
-              interactive plots. Utilizing multithreading for concurrent data processing, 
-              this tool ensures efficient handling of large datasets, making it an invaluable 
-              resource for traders, financial analysts, and researchers looking to gain 
-              actionable insights from market trends.
-              <a href="https://github.com/NguyenDani/Market-Analysis" 
-              style="color:#47a9ff;">Github</a>
-            </p>
+          <div>
+            <h3>Systems &amp; Automation</h3>
+            <ul class="tags">
+              <li>Ansible</li>
+              <li>Kubernetes</li>
+              <li>Kyverno</li>
+              <li>Docker</li>
+              <li>Podman</li>
+              <li>Linux</li>
+              <li>Windows</li>
+              <li>macOS</li>
+              <li>Virtual Machines</li>
+              <li>Active Directory</li>
+              <li>Flask</li>
+              <li>REST APIs</li>
+            </ul>
           </div>
-          <div class="info" data-index="3" data-status="inactive">
-            <h1>Contact</h1>
-            <p>
-               Please feel free to reach out to me using the email provided 
-              or through any of the alternative methods provided.
-            </p>
-            <h3>Email</h3>
-            <a href="mailto:nguyendaniel1997@gmail.com">nguyendaniel1997@gmail.com</a>
-            <h3>Github</h3>
-            <a href="https://github.com/NguyenDani">github.com/NguyenDani</a>
-            <h3>LinkedIn</h3>
-            <a href="https://www.linkedin.com/in/nguyen-dani/">linkedin.com/in/nguyen-dani/</a>
+          <div>
+            <h3>Languages</h3>
+            <ul class="tags">
+              <li>Python</li>
+              <li>Bash</li>
+              <li>PowerShell</li>
+              <li>Batch</li>
+              <li>C/C++</li>
+              <li>Java</li>
+              <li>Go</li>
+              <li>Rust</li>
+              <li>JavaScript</li>
+              <li>SQL</li>
+              <li>Assembly (x86/ARM)</li>
+            </ul>
           </div>
         </div>
-        <div class="art-credit art-sec">
-          <div class="credit">
-            <p>
-              Welcome to my portfolio! Here, you'll find a showcase of my work, 
-              passion, and dedication. Whether it's through innovative design, 
-              creative projects, or meticulous attention to detail, each piece 
-              reflects my commitment to excellence. I invite you to explore my 
-              accomplishments, learn about my journey, and see firsthand how I 
-              bring ideas to life. Thank you for visiting, and I hope you enjoy 
-              discovering the diverse array of talents and skills I have to offer.
-            </p>
+      </div>
+    </section>
+
+    <section class="wrap section" id="projects">
+      <h2>Projects</h2>
+      <!-- EDIT: projects. Copy an <article class="card"> block to add another.
+           The .card-kind label is free text: Tool, CTF, Research, CVE…
+           To link a card, wrap the title in <a href="…"> and add
+           <p class="card-links"><a href="…">Code</a></p> after the tags. -->
+      <div class="grid">
+        <article class="card">
+          <p class="card-kind">Tool</p>
+          <h3>Scanner Status Dashboard</h3>
+          <p>A single-page web app that brings scanner status, latest scan results, and plugin updates into one view: a one-stop shop for everything scan-related. Built at CACI.</p>
+          <ul class="tags"><li>Flask</li><li>Paramiko</li><li>REST API</li><li>JavaScript</li></ul>
+        </article>
+        <article class="card">
+          <p class="card-kind">Policy as code</p>
+          <h3>Kubernetes STIG Policies</h3>
+          <p>Kyverno policies for the Kubernetes STIG and CIS benchmarks, with Ansible playbooks enforcing the file-level controls Kyverno can't reach. Designed for reuse on future clusters. Built at CACI.</p>
+          <ul class="tags"><li>Kyverno</li><li>Ansible</li><li>Kubernetes</li><li>STIG</li><li>CIS</li></ul>
+        </article>
+        <article class="card">
+          <p class="card-kind">Automation</p>
+          <h3>Automated Tenable Deployment</h3>
+          <p>Ansible playbooks that provision Tenable Security Center VMs and deploy Nessus scanners as Podman containers, cutting deployment time from hours to minutes. Built at CACI.</p>
+          <ul class="tags"><li>Ansible</li><li>Podman</li><li>Tenable SC</li><li>Nessus</li></ul>
+        </article>
+        <article class="card">
+          <p class="card-kind">CTF</p>
+          <h3>CTFs &amp; Custom Labs</h3>
+          <p>Regular participant on HackTheBox and TryHackMe, alongside custom labs and small applications built to practice exploitation, reverse engineering, cryptography, and defensive techniques.</p>
+          <ul class="tags"><li>HackTheBox</li><li>TryHackMe</li><li>Exploitation</li><li>Reversing</li></ul>
+        </article>
+        <article class="card">
+          <p class="card-kind">Research</p>
+          <h3>Containerized Security Testing</h3>
+          <p>Hunting for vulnerabilities in open-source projects published on DockerHub, using containers to isolate each target so the testing stays safe and repeatable.</p>
+          <ul class="tags"><li>Docker</li><li>Vulnerability Research</li><li>Open Source</li></ul>
+        </article>
+        <article class="card">
+          <p class="card-kind">Automation</p>
+          <h3>Custom Security Automation</h3>
+          <p>Scripts I develop and maintain to automate penetration testing tasks, vulnerability scans, and report generation, so the repeatable parts of an assessment run themselves.</p>
+          <ul class="tags"><li>Scripting</li><li>Pen Testing</li><li>Reporting</li></ul>
+        </article>
+        <article class="card">
+          <p class="card-kind">Lab</p>
+          <h3>Penetration Testing Labs</h3>
+          <p>Virtualized environments I use for controlled penetration testing and reverse engineering practice.</p>
+          <ul class="tags"><li>Virtual Machines</li><li>Pen Testing</li><li>Reversing</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap section" id="certs">
+      <h2>Certifications</h2>
+      <!-- EDIT: certifications. Copy an <li> block to add another. -->
+      <ul class="certs">
+        <li>
+          <h3>eCPPT</h3>
+          <p>Certified Professional Penetration Tester · INE Security</p>
+        </li>
+        <li>
+          <h3>Security+</h3>
+          <p>CompTIA</p>
+        </li>
+        <li>
+          <h3>eJPT</h3>
+          <p>Junior Penetration Tester · INE Security</p>
+        </li>
+        <li>
+          <h3>Intelligence Analyst Diploma</h3>
+          <p>U.S. Army · 2017</p>
+        </li>
+        <li class="pending">
+          <h3>OSCP</h3>
+          <p>Offensive Security Certified Professional · In progress</p>
+        </li>
+        <li class="pending">
+          <h3>CySA+</h3>
+          <p>CompTIA Cybersecurity Analyst · In progress</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap section" id="experience">
+      <h2>Experience</h2>
+      <!-- EDIT: experience. Copy an <li> block to add another. -->
+      <ol class="timeline">
+        <li>
+          <p class="when">Oct 2026 — Present</p>
+          <div>
+            <!-- EDIT: add "· Employer" after the title if you want it shown -->
+            <h3>Application Security Engineer</h3>
+            <p>Embedding security into the software development lifecycle for applications supporting a DoD mission: static and dynamic application security testing, secure code review, penetration testing, and tracking remediation through to closure.</p>
           </div>
-        </div>
-        
-        <div class="art-nav art-sec">
-          <button class="art-nav-left art-nav-but" type="button">
-            <div class="arrow left">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </button>
-          <button class="art-nav-right art-nav-but" type="button">
-            <div class="arrow right">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </button>
-        </div>
-      </article>
-    </main>
-  </body>
+        </li>
+        <li>
+          <p class="when">Apr 2026 — Oct 2026</p>
+          <div>
+            <h3>Cyber Engineer · CACI</h3>
+            <p>Deployed Tenable Security Center with containerized Nessus scanners for ACAS and vulnerability scanning, and automated the deployment with Ansible, cutting it from hours to minutes.</p>
+            <p>Ran Evaluate-STIG, SCC, and ZAP assessments, automated weekly STIG scans with Bash and cron, and triaged findings into remediation tasks to harden environments against DISA STIG baselines.</p>
+            <p>Wrote Kyverno policy as code for the Kubernetes STIG and CIS benchmarks, used JFrog Xray contextual analysis to prioritize vulnerabilities that were actually exploitable, and built a dashboard centralizing scanner status and results.</p>
+            <p>Created custom SBOM and RBOM tooling to produce XML inventory lists of software components.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Nov 2024 — Apr 2026</p>
+          <div>
+            <h3>Engineering Technician · Applied Materials</h3>
+            <p>Performance and quality testing on complex machinery against industry and customer standards, with root cause analysis of component and system failures.</p>
+            <p>Analyzed test data to identify risks and trends, implemented corrective actions to improve safety, reliability, and efficiency, and worked with cross-functional engineering teams to optimize system design and product performance.</p>
+            <p>Documented test procedures and compliance processes to support knowledge transfer.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">May 2023</p>
+          <div>
+            <h3>B.S. Computer Science · University of Houston</h3>
+            <p>Minor in Mathematics. Relevant coursework: Computer Networks, Software Design, Interactive Computer Graphics, Interactive Game Development.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Feb 2022 — Aug 2022</p>
+          <div>
+            <h3>Programmer Analyst Intern · CenterPoint Energy</h3>
+            <p>Automated security tasks with PowerShell, Bash, Batch, and Python, saving more than 10 hours of manual work per week, and scheduled automated password updates and compliance reports with Windows Scheduler.</p>
+            <p>Administered Active Directory permissions and Group Policies under least privilege, and built 50+ workstations to enterprise security standards while minimizing downtime.</p>
+            <p>Maintained technical documentation to standardize secure operations and keep best practices repeatable.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Apr 2016 — Apr 2022</p>
+          <div>
+            <h3>Intelligence Analyst · Texas Army National Guard</h3>
+            <p>Analyzed multi-source intelligence to identify emerging cyber and physical threats, and produced risk assessments and threat reports for both executive decision-makers and technical security teams.</p>
+            <p>Maintained intelligence repositories, ensuring data integrity, secure handling of sensitive information, and rapid retrieval for threat investigations.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap section contact" id="contact">
+      <h2>Contact</h2>
+      <!-- EDIT: contact links -->
+      <p class="lede">The best way to reach me is email.</p>
+      <p class="actions">
+        <a class="btn primary" href="mailto:nguyendaniel1997@gmail.com">nguyendaniel1997@gmail.com</a>
+        <a class="btn" href="https://github.com/NguyenDani">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/nguyen-dani">LinkedIn</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer">
+    <p>© <span id="year"></span> Daniel Nguyen</p>
+    <p>No trackers. No cookies. No third-party requests.</p>
+  </footer>
+
+  <script src="script.js?v=2"></script>
+  <script type="module" src="scene.js?v=3"></script>
+</body>
 </html>
